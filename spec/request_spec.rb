@@ -6,12 +6,26 @@ RSpec.describe Request do
   let(:mocked_body) { { property_type: 'flat' } }
 
   describe '#properties' do
-    it 'returns a JSON response for Zoopla properties' do
-      stub_request(:get, "#{request_url}/property_listings.json")
-      .with(query: { api_key: ENV.fetch('ZOOPLA_API_KEY') })
-      .to_return(status: 200, body: mocked_body.to_json)
+    context 'when no arguments are given' do
+      it 'returns a JSON response for Zoopla properties' do
+        stub_request(:get, "#{request_url}/property_listings.json")
+        .with(query: { api_key: ENV.fetch('ZOOPLA_API_KEY') })
+        .to_return(status: 200, body: mocked_body.to_json)
 
-      expect(subject.properties).to eq(mocked_body)
+        expect(subject.properties).to eq(mocked_body)
+      end
+    end
+
+    context 'when query arguments are given' do
+      it 'returns a JSON response for filtered Zoopla properties' do
+        query = { status: 'rent', postcode: 'N1', town: 'London' }
+
+        stub_request(:get, "#{request_url}/property_listings.json")
+        .with(query: { api_key: ENV.fetch('ZOOPLA_API_KEY') }.merge(query))
+        .to_return(status: 200, body: mocked_body.to_json)
+
+        expect(subject.properties(query)).to eq(mocked_body)
+      end
     end
   end
 end

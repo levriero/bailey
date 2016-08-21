@@ -1,5 +1,6 @@
 require 'dotenv'
 require 'faraday'
+require 'json'
 
 Dotenv.load
 
