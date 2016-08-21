@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+gem 'mail'
 gem 'faraday'
 gem 'dotenv'
 gem 'rufus-scheduler'
