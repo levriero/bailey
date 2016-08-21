@@ -1,8 +1,5 @@
 require 'json'
-require 'dotenv'
 require 'faraday'
-
-Dotenv.load
 
 module Zoopla
   class Request

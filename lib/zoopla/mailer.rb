@@ -1,10 +1,11 @@
 require 'mail'
-require 'pry'
+require 'erb'
 
 module Zoopla
   class Mailer
     def initialize(data)
       @data = data
+      @template = File.read(File.expand_path('../layout.html.erb', __FILE__))
     end
 
     def deliver!
@@ -16,13 +17,7 @@ module Zoopla
 
     def html_body
       @data[:listing].map do |property|
-        %Q(
-        <div>
-          <h1>#{property[:displayable_address]} - #{property[:price]} p.w.</h1>
-          <p>#{property[:short_description]}</p>
-          <a href="#{property[:details_url]}" >See this property.</a>
-        </div>
-        ).gsub!(/[[:space:]]+/, ' ').strip
+        ERB.new(@template).result(binding).gsub!(/[[:space:]]+/, ' ').strip
       end.join('')
     end
 

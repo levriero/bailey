@@ -1,5 +1,8 @@
+require 'dotenv'
 require 'rufus-scheduler'
 require_relative 'zoopla/notifier'
+
+Dotenv.load
 
 params = {
   postcode: 'N1',

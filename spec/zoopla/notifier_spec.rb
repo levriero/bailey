@@ -5,6 +5,8 @@ describe Zoopla::Notifier do
   let(:mailer) { double('Zoopla::Mailer', deliver!: nil) }
 
   before do
+    ENV['ZOOPLA_API_KEY'] = 'zoopla-key'
+
     allow(Zoopla::Mailer).to receive(:new).and_return(mailer)
 
     stub_request(:get, 'http://api.zoopla.co.uk/api/v1/property_listings.json')
