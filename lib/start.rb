@@ -17,8 +17,8 @@ params = {
 }
 
 scheduler = Rufus::Scheduler.new
-notifier = Zoopla::Notifier.new(params)
+zoopla_notifier = Zoopla::Notifier.new(params)
 
-scheduler.cron '0 12 * * *', properties
+scheduler.cron('0 12 * * *', zoopla_notifier)
 
 scheduler.join
