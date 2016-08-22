@@ -23,9 +23,11 @@ tls_random_source=dev:/dev/urandom
 ```
 
 * Create a sasl_passwd file to authenticate with your SMTP server
+ 
 `$ echo mtp.gmail.com:587 me@gmail.com:password >> /etc/postfix/sasl_passwd`
 
 * Create postfix lookup table and restart postfix
+
 `$ sudo postmap /etc/postfix/sasl_passwd && postfix reload`
 
 * You might have to turn on ["less secure apps"](https://www.google.com/settings/security/lesssecureapps) access if using Gmail
