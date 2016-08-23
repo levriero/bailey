@@ -4,6 +4,10 @@ require_relative 'zoopla/notifier'
 
 Dotenv.load
 
+Mail.defaults do
+  delivery_method(:smtp, { enable_starttls_auto: false })
+end
+
 params = {
   postcode: 'N1',
   town: 'London',
@@ -12,7 +16,6 @@ params = {
   maximum_price: 575,
   minimum_beds: 2,
   order_by: 'age',
-  radius: 1,
   page_size: 15
 }
 
