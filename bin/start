@@ -23,6 +23,10 @@ OptionParser.new do |opts|
   opts.on('--price=PRICE_RANGE', 'Price range MIN-MAX') do |value|
     options[:minimum_price], options[:maximum_price] = value.split('-')
   end
+
+  opts.on('--area=AREA', 'A location of interest') do |value|
+    options[:area] = value
+  end
 end.parse!
 
 scheduler = Rufus::Scheduler.new

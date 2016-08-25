@@ -13,6 +13,10 @@ To run the notifier
 # --postcode; An outcode or specific London postcode, i.e N1 or SW1A 1AA
 # --beds; Minimum number of beds, i.e. 2
 # --price; A price range (per week) to search for, i.e 200-350
+# --area; A location of interest, i.e. Canonbury
 
-$ ./bin/start --postcode=E10 --beds=2 --price=310-375
+$ ./bin/start --postcode=E10 --price=310-375
 ```
+
+All parameters are optional, for a more fine-grained search provide as much
+detail as possible.
