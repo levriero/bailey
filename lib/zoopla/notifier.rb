@@ -4,7 +4,7 @@ require_relative 'request'
 module Zoopla
   class Notifier
     def initialize(params)
-      @params = params
+      @params = default_params.merge(params)
     end
 
     def call(job, time)
@@ -17,6 +17,16 @@ module Zoopla
 
     def properties
       Zoopla::Request.new.properties(@params)
+    end
+
+    def default_params
+      {
+        town: 'London',
+        listing_status: 'rent',
+        order_by: 'age',
+        ordering: 'descending',
+        page_size: 15
+      }
     end
   end
 end

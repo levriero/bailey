@@ -6,11 +6,19 @@ describe Zoopla::Notifier do
 
   before do
     ENV['ZOOPLA_API_KEY'] = 'zoopla-key'
+    defaults = {
+      town: 'London',
+      listing_status: 'rent',
+      order_by: 'age',
+      ordering: 'descending',
+      page_size: 15,
+      api_key: ENV.fetch('ZOOPLA_API_KEY')
+    }
 
     allow(Zoopla::Mailer).to receive(:new).and_return(mailer)
 
     stub_request(:get, 'http://api.zoopla.co.uk/api/v1/property_listings.json')
-    .with(query: { api_key: ENV.fetch('ZOOPLA_API_KEY') }.merge(query))
+    .with(query: defaults.merge(query))
     .to_return(status: 200, body: { hello: 'world' }.to_json)
   end
 

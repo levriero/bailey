@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'dotenv'
+require 'optparse'
+require 'rufus-scheduler'
+require_relative '../lib/zoopla/notifier'
+
+Dotenv.load
+
+Mail.defaults do
+  delivery_method(:smtp, { enable_starttls_auto: false })
+end
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.on('--beds=BEDS', 'Min. Beds') { |value| options[:minimum_beds] = value }
+
+  opts.on('--postcode=POSTCODE', 'An outcode or specific postcode') do |value|
+    options[:postcode] = value
+  end
+
+  opts.on('--price=PRICE_RANGE', 'Price range MIN-MAX') do |value|
+    options[:minimum_price], options[:maximum_price] = value.split('-')
+  end
+end.parse!
+
+scheduler = Rufus::Scheduler.new
+zoopla_notifier = Zoopla::Notifier.new(options)
+
+scheduler.cron('0 12 * * *', zoopla_notifier)
+scheduler.join
