@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem 'mail'
 gem 'faraday'
+gem 'faraday_middleware'
 gem 'dotenv'
 gem 'nokogiri'
 gem 'rufus-scheduler'
