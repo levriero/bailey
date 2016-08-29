@@ -32,5 +32,5 @@ end.parse!
 scheduler = Rufus::Scheduler.new
 zoopla_notifier = Zoopla::Notifier.new(options)
 
-scheduler.cron('0 12 * * *', zoopla_notifier)
+scheduler.cron('0 6 * * *', zoopla_notifier)
 scheduler.join
