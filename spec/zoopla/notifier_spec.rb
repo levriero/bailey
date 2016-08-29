@@ -10,7 +10,7 @@ describe Zoopla::Notifier do
       town: 'London',
       listing_status: 'rent',
       order_by: 'age',
-      ordering: 'descending',
+      ordering: 'ascending',
       page_size: 15,
       api_key: ENV.fetch('ZOOPLA_API_KEY')
     }
