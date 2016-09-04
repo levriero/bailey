@@ -24,7 +24,6 @@ module Zoopla
         town: 'London',
         listing_status: 'rent',
         order_by: 'age',
-        ordering: 'ascending',
         page_size: 15
       }
     end

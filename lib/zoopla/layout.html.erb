@@ -3,7 +3,9 @@
     <%= property[:displayable_address] %> - <%= property[:price] %> p.w.
   </h3>
 
-  <img src="<%= property[:image_url] %>" width="325" height="255" />
+  <a href="<%= property[:details_url] %>">
+    <img src="<%= property[:image_url] %>" width="325" height="255" />
+  </a>
 
   <p><%= property[:short_description] %></p>
 
